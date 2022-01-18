@@ -8,7 +8,7 @@ import Login from '../Login/Login';
 import { Paths } from '../../contents/routes';
 import Registration from '../Registration/Registration';
 import Content from '../Content/Content';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 const App = () => {
   const { auth } = useContext<any>(Context);
@@ -20,17 +20,29 @@ const App = () => {
   }, [user, setUser]);
 
   return (
-    <Box
+    <Stack
       sx={{
         width: '100vw',
         height: '100vh',
         bgcolor: '#F6F6F6',
         overflow: 'auto',
+        display: 'flex',
+        justifyContent: 'flex-start',
       }}
       id={'boxContainer'}
     >
       {setUser ? (
-        <Loader />
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+          id={'boxContainer'}
+        >
+          <Loader />
+        </Box>
       ) : (
         <>
           <Navbar />
@@ -41,7 +53,7 @@ const App = () => {
           </Routes>
         </>
       )}
-    </Box>
+    </Stack>
   );
 };
 

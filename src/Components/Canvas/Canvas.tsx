@@ -6,7 +6,7 @@ const Canvas = ({ setRef }: { setRef(ref: any): void }) => {
   useEffect(() => {
     setRef(canvasRef.current);
   });
-  return <canvas ref={canvasRef} width={1350} height={730} />;
+  return <canvas ref={canvasRef} width={790} height={755} />;
 };
 
 export default Canvas;

@@ -8,9 +8,9 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <AppBar position="static" sx={{ width: '100%', minWidth: '1920px' }}>
+    <AppBar position="static" sx={{ minWidth: '1120px' }}>
       <Toolbar sx={{ bgcolor: 'white', color: 'black' }}>
-        <Typography color="secondary" variant={'h6'} sx={{ flexGrow: 1, textAlign: 'center' }}>
+        <Typography color="secondary" variant={'h6'} sx={{ flexGrow: 1 }}>
           Mini Paint
         </Typography>
         {user ? (
