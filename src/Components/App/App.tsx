@@ -8,7 +8,7 @@ import Login from '../Login/Login';
 import { Paths } from '../../contents/routes';
 import Registration from '../Registration/Registration';
 import Content from '../Content/Content';
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 
 const App = () => {
   const { auth } = useContext<any>(Context);
@@ -25,8 +25,7 @@ const App = () => {
         width: '100vw',
         height: '100vh',
         bgcolor: '#F6F6F6',
-        overflowY: 'auto',
-        overflowX: 'auto',
+        overflow: 'auto',
       }}
       id={'boxContainer'}
     >

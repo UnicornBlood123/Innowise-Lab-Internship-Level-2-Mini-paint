@@ -27,9 +27,15 @@ export default class Rect extends Tool {
     this.mouseDown = true;
     this.ctx.beginPath();
     this.startX =
-      e.clientX - e.target.offsetLeft + (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
+      e.clientX -
+      e.target.offsetLeft +
+      e.target.scrollLeft +
+      (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
     this.startY =
-      e.clientY - e.target.offsetTop + (document.querySelector('#boxContainer')?.scrollTop ?? 0);
+      e.clientY -
+      e.target.offsetTop +
+      e.target.scrollTop +
+      (document.querySelector('#boxContainer')?.scrollTop ?? 0);
     this.saved = this.canvas.toDataURL();
   }
   mouseMoveHandler(e: any) {
@@ -37,9 +43,13 @@ export default class Rect extends Tool {
       this.currentX =
         e.clientX -
         e.target.offsetLeft +
+        e.target.scrollLeft +
         (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
       this.currentY =
-        e.clientY - e.target.offsetTop + (document.querySelector('#boxContainer')?.scrollTop ?? 0);
+        e.clientY -
+        e.target.offsetTop +
+        e.target.scrollTop +
+        (document.querySelector('#boxContainer')?.scrollTop ?? 0);
       this.w = this.currentX - this.startX;
       this.h = this.currentY - this.startY;
       this.draw(this.startX, this.startY, this.w, this.h);

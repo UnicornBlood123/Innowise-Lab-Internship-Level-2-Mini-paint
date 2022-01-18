@@ -8,7 +8,7 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <AppBar position="static" sx={{ width: window.innerWidth }}>
+    <AppBar position="static" sx={{ width: '100%', minWidth: '1920px' }}>
       <Toolbar sx={{ bgcolor: 'white', color: 'black' }}>
         <Typography color="secondary" variant={'h6'} sx={{ flexGrow: 1, textAlign: 'center' }}>
           Mini Paint

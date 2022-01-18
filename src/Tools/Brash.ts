@@ -19,9 +19,15 @@ export default class Brush extends Tool {
     this.mouseDown = true;
     this.ctx.beginPath();
     this.x =
-      e.clientX - e.target.offsetLeft + (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
+      e.clientX -
+      e.target.offsetLeft +
+      e.target.scrollLeft +
+      (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
     this.y =
-      e.clientY - e.target.offsetTop + (document.querySelector('#boxContainer')?.scrollTop ?? 0);
+      e.clientY -
+      e.target.offsetTop +
+      e.target.scrollTop +
+      (document.querySelector('#boxContainer')?.scrollTop ?? 0);
     this.ctx.moveTo(this.x, this.y);
   }
   mouseMoveHandler(e: any) {
@@ -29,9 +35,13 @@ export default class Brush extends Tool {
       this.x =
         e.clientX -
         e.target.offsetLeft +
+        e.target.scrollLeft +
         (document.querySelector('#boxContainer')?.scrollLeft ?? 0);
       this.y =
-        e.clientY - e.target.offsetTop + (document.querySelector('#boxContainer')?.scrollTop ?? 0);
+        e.clientY -
+        e.target.offsetTop +
+        e.target.scrollTop +
+        (document.querySelector('#boxContainer')?.scrollTop ?? 0);
       this.draw(this.x, this.y);
     }
   }

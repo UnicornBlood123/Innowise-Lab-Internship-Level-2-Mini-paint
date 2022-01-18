@@ -10,8 +10,13 @@ const Content = () => {
       <Grid
         container
         sx={{
-          height: window.innerHeight - 64,
-          width: window.innerWidth,
+          minHeight: '873px',
+          minWidth: '1920px',
+          maxHeight: '873px',
+          maxWidth: '1920px',
+          height: '873px',
+          width: '1920px',
+          margin: 'auto',
         }}
       >
         <Grid
