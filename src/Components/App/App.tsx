@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from '../Loader/Loader';
 import Login from '../Login/Login';
 import { Paths } from '../../contents/routes';
-import Registration from '../Registration/Registration'
+import Registration from '../Registration/Registration';
+import Content from '../Content/Content';
+import { Box, Grid } from '@mui/material';
 
 const App = () => {
   const { auth } = useContext<any>(Context);
@@ -19,20 +20,29 @@ const App = () => {
   }, [user, setUser]);
 
   return (
-    <div className="app">
+    <Box
+      sx={{
+        width: '100vw',
+        height: '100vh',
+        bgcolor: '#F6F6F6',
+        overflowY: 'auto',
+        overflowX: 'auto',
+      }}
+      id={'boxContainer'}
+    >
       {setUser ? (
         <Loader />
       ) : (
-        <React.Fragment>
+        <>
           <Navbar />
           <Routes>
-            <Route path={Paths.OTHER} element={<div>qwe</div>} />
+            <Route path={Paths.OTHER} element={<Content />} />
             <Route path={Paths.LOGIN} element={<Login />} />
             <Route path={Paths.REGISTER} element={<Registration />} />
           </Routes>
-        </React.Fragment>
+        </>
       )}
-    </div>
+    </Box>
   );
 };
 

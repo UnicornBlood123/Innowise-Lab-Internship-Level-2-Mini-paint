@@ -1,10 +1,17 @@
 import React, { useContext, useState } from 'react';
-import './Login.css';
 import { Context } from '../../index';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Paths } from '../../contents/routes';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from '@mui/material';
 
 const Login = () => {
   const { auth } = useContext<any>(Context);
@@ -28,32 +35,30 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <p>
-        <label htmlFor="email">Email:</label>
-        <br />
-        <input
-          id="email"
-          type="email"
-          value={email}
+    <Dialog open={true} aria-labelledby={'form-dialog-title'}>
+      <DialogTitle id={'form-dialog-title'}>Login</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin={'dense'}
+          id={'email'}
+          label={'Email adress'}
+          type={'email'}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={email}
         />
-      </p>
-      <p>
-        <label htmlFor="password">Password:</label>
-        <br />
-        <input
-          id="password"
-          type="password"
-          value={password}
+        <TextField
+          margin={'dense'}
+          id={'pass'}
+          label={'Password'}
+          type={'password'}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder={password}
         />
-      </p>
-      <button onClick={entry}>Sign in</button>
-      <button onClick={() => navigate(Paths.REGISTER)}>Register</button>
-    </div>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={entry}>Sign in</Button>
+        <Button onClick={() => navigate(Paths.REGISTER)}>Register</Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 

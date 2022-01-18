@@ -6,6 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from './store/redusers';
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,6 +24,7 @@ export const Context = createContext(null);
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,7 +38,9 @@ ReactDOM.render(
       }
     >
       <BrowserRouter>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     </Context.Provider>
   </React.StrictMode>,

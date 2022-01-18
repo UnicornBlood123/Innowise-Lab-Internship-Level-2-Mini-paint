@@ -1,7 +1,5 @@
 .loader{
     display: flex;
-    flex-flow: row wrap;
-    grid-area: content;
     align-self: center;
     justify-self: center;
     justify-content: center;
@@ -20,8 +18,8 @@
     height: 0;
     margin: 8px;
     box-sizing: border-box;
-    border: 32px solid #fdd;
-    border-color: #fdd transparent #fdd transparent;
+    border: 32px solid #0000ff;
+    border-color: blue transparent blue  transparent;
     animation: lds-hourglass 1.2s infinite;
 }
 @keyframes lds-hourglass {
