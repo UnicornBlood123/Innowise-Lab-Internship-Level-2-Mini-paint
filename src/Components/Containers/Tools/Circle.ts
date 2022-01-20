@@ -1,8 +1,9 @@
 import Tool from './Tool';
 
-export default class Rect extends Tool {
+export default class Circle extends Tool {
   w = 0;
   h = 0;
+  r = 0;
   startX = 0;
   startY = 0;
   currentX = 0;
@@ -52,20 +53,21 @@ export default class Rect extends Tool {
         (document.querySelector('#boxContainer')?.scrollTop ?? 0);
       this.w = this.currentX - this.startX;
       this.h = this.currentY - this.startY;
-      this.draw(this.startX, this.startY, this.w, this.h);
+      this.r = Math.sqrt(this.w ** 2 + this.h ** 2);
+      this.draw(this.startX, this.startY, this.r);
     }
   }
 
-  draw(x: number, y: number, w: number, h: number) {
+  draw(x: number, y: number, r: number) {
     const img = new Image();
     img.src = this.saved;
     img.onload = () => {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
       this.ctx.beginPath();
-      this.ctx.rect(x, y, w, h);
-      this.ctx.stroke();
+      this.ctx.arc(x, y, r, 0, 2 * Math.PI);
       this.ctx.fill();
+      this.ctx.stroke();
     };
   }
 }

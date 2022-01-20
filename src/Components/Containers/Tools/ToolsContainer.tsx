@@ -1,10 +1,12 @@
 import React from 'react';
 import Tools from '../../Viers/Tools/Tools';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBrash, selectRect } from '../../../store/actions';
+import { selectBrash, selectCircle, selectLine, selectRect } from '../../../store/actions';
 import { Box } from '@mui/material';
 import Brash from './Brash';
 import Rect from './Rect';
+import Line from './Line';
+import Circle from './Circle';
 
 const ToolsContainer = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,23 @@ const ToolsContainer = () => {
     dispatch(selectRect(new Rect(canvas.canvasRef)));
   };
 
+  const lineButtonClick = () => {
+    dispatch(selectLine(new Line(canvas.canvasRef)));
+  };
+
+  const circleButtonClick = () => {
+    dispatch(selectCircle(new Circle(canvas.canvasRef)));
+  };
+
+  const changeColorClick = (color: string) => {
+    tools.selectTool.strokeColor = color;
+    tools.selectTool.fillColor = color;
+  };
+
+  const changeLineWidthClick = (width: number) => {
+    tools.selectTool.lineWidth = width;
+  };
+
   return (
     <Box
       sx={{
@@ -28,6 +47,7 @@ const ToolsContainer = () => {
         border: '1px solid black',
         display: 'flex',
         alignContent: 'center',
+        alignItems: 'center',
         padding: '15px',
         gap: '10px',
       }}
@@ -36,6 +56,10 @@ const ToolsContainer = () => {
         onBrushClick={brushButtonClick}
         onRectClick={rectButtonClick}
         toolActive={tools.toolName}
+        onChangeColor={changeColorClick}
+        onChangeLineWidth={changeLineWidthClick}
+        onLineClick={lineButtonClick}
+        onCircleClick={circleButtonClick}
       />
     </Box>
   );

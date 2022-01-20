@@ -12,6 +12,18 @@ export const selectRect = (tool: any) => ({
   toolName: Types.RECT,
 });
 
+export const selectLine = (tool: any) => ({
+  type: Types.LINE,
+  tool: tool,
+  toolName: Types.LINE,
+});
+
+export const selectCircle = (tool: any) => ({
+  type: Types.CIRCLE,
+  tool: tool,
+  toolName: Types.CIRCLE,
+});
+
 export const setCanvas = (canvas: any) => ({
   type: Types.CANVAS,
   canvasRef: canvas,

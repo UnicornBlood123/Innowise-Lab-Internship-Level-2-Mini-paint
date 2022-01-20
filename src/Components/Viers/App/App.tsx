@@ -3,12 +3,11 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { Context } from '../../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Loader from '../Loader/Loader';
 import Login from '../Login/Login';
 import { Paths } from '../../../contents/routes';
 import Registration from '../Registration/Registration';
 import Content from '../Content/Content';
-import { Box, Stack } from '@mui/material';
+import { Box, CircularProgress, Stack } from '@mui/material';
 
 const App = () => {
   const { auth } = useContext<any>(Context);
@@ -41,7 +40,7 @@ const App = () => {
           }}
           id={'boxContainer'}
         >
-          <Loader />
+          <CircularProgress sx={{ alignSelf: 'center' }} />
         </Box>
       ) : (
         <>
