@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Grid, Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Chat from '../Chat/Chat';
-import CanvasContainer from '../Canvas/CanvasContainer';
-import ToolsContainer from '../Tools/ToolsContainer';
+import CanvasContainer from '../../Containers/Canvas/CanvasContainer';
+import ToolsContainer from '../../Containers/Tools/ToolsContainer';
 
 const Content = () => {
   return (

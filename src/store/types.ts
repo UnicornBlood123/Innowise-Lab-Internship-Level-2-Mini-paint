@@ -1,5 +1,5 @@
 export enum Types {
   BRASH = 'BRASH',
-  DRAWBRASH = 'DRAWBRASH',
+  CANVAS = 'CANVAS',
   RECT = 'RECT',
 }

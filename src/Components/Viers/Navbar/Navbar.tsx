@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Context } from '../../index';
+import { Context } from '../../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 
@@ -14,11 +14,11 @@ const Navbar = () => {
           Mini Paint
         </Typography>
         {user ? (
-          <Button color="secondary" variant="contained" onClick={() => auth.signOut()}>
+          <Button color="secondary" variant="outlined" onClick={() => auth.signOut()}>
             Exit
           </Button>
         ) : (
-          <Button color="secondary" variant="contained">
+          <Button color="secondary" variant="outlined">
             Login
           </Button>
         )}

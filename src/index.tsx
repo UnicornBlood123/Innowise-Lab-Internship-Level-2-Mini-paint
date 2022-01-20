@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Components/App/App';
+import App from './Components/Viers/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
