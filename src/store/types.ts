@@ -4,4 +4,5 @@ export enum Types {
   LINE = 'LINE',
   RECT = 'RECT',
   CIRCLE = 'CIRCLE',
+  LOADIMAGES = 'LOADIMAGES',
 }

@@ -16,8 +16,8 @@ const App = () => {
 
   React.useEffect(() => {
     !setUser && !user && navigate(Paths.LOGIN);
+    console.log(user);
   }, [user, setUser]);
-
   return (
     <Stack
       sx={{

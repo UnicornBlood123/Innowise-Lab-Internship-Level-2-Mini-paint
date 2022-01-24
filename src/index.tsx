@@ -7,8 +7,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { rootReducer } from './store/redusers';
+import thunk from 'redux-thunk';
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -24,7 +25,8 @@ export const Context = createContext(null);
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
+store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>

@@ -28,3 +28,11 @@ export const setCanvas = (canvas: any) => ({
   type: Types.CANVAS,
   canvasRef: canvas,
 });
+
+export const loadImages = (loadImagesFromFirestore: any) => {
+  return (dispatch: any) => {
+    return loadImagesFromFirestore().then((data: any) =>
+      dispatch({ type: Types.LOADIMAGES, images: data })
+    );
+  };
+};

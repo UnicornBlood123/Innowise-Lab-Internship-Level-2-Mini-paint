@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stack } from '@mui/material';
+import { Button } from '@mui/material';
 import { Types } from '../../../store/types';
 
 const Tools = ({
@@ -10,6 +10,9 @@ const Tools = ({
   onChangeLineWidth,
   onLineClick,
   onCircleClick,
+  onSaveImageClick,
+  onLoadImageClick,
+  onClearCanvasClick,
 }: any) => {
   return (
     <>
@@ -48,7 +51,7 @@ const Tools = ({
         defaultValue={'black'}
         onChange={(color) => onChangeColor(color.target.value)}
       />
-      <label htmlFor="line-width">line width</label>
+      <label htmlFor="line-width">Width</label>
       <input
         id="line-width"
         type="number"
@@ -57,6 +60,15 @@ const Tools = ({
         defaultValue={1}
         onChange={(width) => onChangeLineWidth(width.target.value)}
       />
+      <Button color="secondary" variant="outlined" onClick={onClearCanvasClick}>
+        Clear
+      </Button>
+      <Button color="secondary" variant="outlined" onClick={() => onSaveImageClick('save')}>
+        Save
+      </Button>
+      <Button color="secondary" variant="outlined" onClick={() => onLoadImageClick('load')}>
+        Load
+      </Button>
     </>
   );
 };

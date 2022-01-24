@@ -6,8 +6,21 @@ export default class Tool {
   canvas: any;
   constructor(canvas: any) {
     this.canvas = canvas;
-    this.ctx = canvas?.getContext('2d');
+    this.ctx = this.canvas?.getContext('2d');
     this.destroyEvents();
+  }
+  set dataCanvas(dataImage: string) {
+    if (dataImage) {
+      const img = new Image();
+      img.src = dataImage;
+      img.onload = () => {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
+      };
+    }
+  }
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
   set strokeColor(color: any) {
     this.ctx.strokeStyle = color;

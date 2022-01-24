@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Stack } from '@mui/material';
-import Chat from '../Chat/Chat';
 import CanvasContainer from '../../Containers/Canvas/CanvasContainer';
 import ToolsContainer from '../../Containers/Tools/ToolsContainer';
+import ChatPostsContainer from '../../Containers/ChatPosts/ChatPostsContainer';
 
 const Content = () => {
   return (
@@ -18,7 +18,7 @@ const Content = () => {
           padding: '25px 5px 25px 5px',
         }}
       >
-        <Chat />
+        <ChatPostsContainer />
       </Box>
       <Stack>
         <Box
