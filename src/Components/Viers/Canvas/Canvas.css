@@ -1,5 +1,5 @@
 canvas{
-    border: 1px solid black;
+    box-shadow: -1px -1px 3px rgb(0 0 0 / 24%) inset;
     align-self: center;
     background-color: white;
     width: 100%;

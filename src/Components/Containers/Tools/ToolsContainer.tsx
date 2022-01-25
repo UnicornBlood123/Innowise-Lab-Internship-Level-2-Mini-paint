@@ -10,13 +10,15 @@ import Circle from './Circle';
 import SaveLoadImage from '../../Viers/SaveLoadImage/SaveLoadImage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '../../../index';
+import AlertDialog from '../../Viers/AlertDialog/AlertDialog';
 
 const ToolsContainer = () => {
   const dispatch = useDispatch();
   const canvas = useSelector((state: any) => state.canvas);
-  const images = useSelector((state: any) => state.images);
+  const images = useSelector((state: any) => state.chat.images);
   const tools = useSelector((state: any) => state.tools);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [alertOpen, setAlertOpen] = useState<boolean>(false);
   const { auth, firestore } = useContext<any>(Context);
   const [user, setUser] = useAuthState(auth);
   const [type, setType] = useState('');
@@ -60,10 +62,9 @@ const ToolsContainer = () => {
     if (!setUser) {
       firestore
         .collection('images')
-        .doc((images.allImages.length + 1).toString())
+        .doc(user?.email + '_' + name)
         .set({
-          id: (images.allImages.length + 1).toString(),
-          uId: user?.uid,
+          id: (images.length + 1).toString(),
           data: canvas.canvasRef.toDataURL(),
           name: name,
           email: user?.email,
@@ -73,7 +74,10 @@ const ToolsContainer = () => {
 
   const loadImageToCanvas = (name: string) => {
     tools.selectTool.dataCanvas =
-      images.allImages.find((image: any) => image.name === name)?.data ?? alert('not found');
+      images.find((image: any) => image.name === name)?.data ?? setAlertOpen(true);
+    images.find((image: any) => image.name === name)?.data === undefined
+      ? setModalOpen(true)
+      : setModalOpen(false);
   };
   const clearCanvasClick = () => {
     tools.selectTool.clearCanvas();
@@ -86,7 +90,7 @@ const ToolsContainer = () => {
           width: '100%',
           height: '100%',
           bgcolor: 'white',
-          border: '1px solid black',
+          boxShadow: '-1px -1px 3px rgb(0 0 0 / 24%) inset',
           display: 'flex',
           alignContent: 'center',
           justifyContent: 'center',
@@ -115,6 +119,7 @@ const ToolsContainer = () => {
         load={loadImageToCanvas}
         type={type}
       />
+      <AlertDialog alertOpen={alertOpen} setAlertOpen={setAlertOpen} error={'Not Found'} />
     </>
   );
 };

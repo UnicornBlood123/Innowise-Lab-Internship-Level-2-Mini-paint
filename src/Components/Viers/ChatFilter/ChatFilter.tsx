@@ -1,12 +1,16 @@
 import React from 'react';
-import { Stack, Box } from '@mui/material';
+import { TextField } from '@mui/material';
 
-const ChatFilter = () => {
+const ChatFilter = ({ emailFilter }: any) => {
   return (
-    <Stack
-      direction="row"
-      sx={{ gap: '5px', boxShadow: '-1px -1px 3px rgb(0 0 0 / 24%) inset', padding: '5px' }}
-    ></Stack>
+    <TextField
+      id={'email'}
+      label={'Email filter'}
+      type={'email'}
+      size={'small'}
+      sx={{ justifyContent: 'center' }}
+      onChange={(e: any) => emailFilter(e.target.value)}
+    />
   );
 };
 

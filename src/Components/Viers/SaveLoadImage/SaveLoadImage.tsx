@@ -18,7 +18,6 @@ const SaveLoadImage = ({ modalOpen, setModalOpen, save, load, type }: any) => {
   };
 
   const loadButtonClick = () => {
-    setModalOpen(false);
     load(imageName);
   };
 

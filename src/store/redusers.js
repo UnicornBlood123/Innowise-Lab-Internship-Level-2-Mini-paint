@@ -1,10 +1,10 @@
 import { toolReducer } from './toolReducer';
 import { canvasReducer } from './canvasReducer';
 import { combineReducers } from 'redux';
-import { imageReducer } from './imageReducer';
+import { chatReducer } from './chatReducer';
 
 export const rootReducer = combineReducers({
   tools: toolReducer,
   canvas: canvasReducer,
-  images: imageReducer,
+  chat: chatReducer,
 });
