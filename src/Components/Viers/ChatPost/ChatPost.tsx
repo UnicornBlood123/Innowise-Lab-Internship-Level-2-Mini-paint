@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Checkbox, Box, Stack } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { ChatPostProps } from './ChatPost.interfaces';
 
-const ChatPost = ({ email, name, img, change, checked = false, id }: any) => {
+const ChatPost = ({ email, name, img, change, checked = false, id }: ChatPostProps) => {
   return (
     <Stack
       direction="row"

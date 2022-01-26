@@ -42,7 +42,9 @@ const ChatPostsContainer = () => {
   };
 
   const setCheck = (check: boolean, id: number) => {
-    if (!setImagesData && !setUsersData && user) {
+    !setImagesData &&
+      !setUsersData &&
+      user &&
       firestore
         .collection('users')
         .doc(user?.email)
@@ -54,7 +56,6 @@ const ChatPostsContainer = () => {
             .doc(user?.email)
             ?.update({ [id]: check });
         });
-    }
   };
 
   const filterPosts = (email = '') => {

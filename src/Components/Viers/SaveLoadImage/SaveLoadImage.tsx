@@ -8,8 +8,9 @@ import {
   DialogTitle,
   TextField,
 } from '@mui/material';
+import { SaveLoadImageProps } from './SaveLoadImage.interfaces';
 
-const SaveLoadImage = ({ modalOpen, setModalOpen, save, load, type }: any) => {
+const SaveLoadImage = ({ modalOpen, setModalOpen, save, load, type }: SaveLoadImageProps) => {
   const [imageName, setImageName] = useState('');
 
   const saveButtonClick = () => {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextField } from '@mui/material';
+import { ChatFilterProps } from './ChatFilter.interfaces';
 
-const ChatFilter = ({ emailFilter }: any) => {
+const ChatFilter = ({ emailFilter }: ChatFilterProps) => {
   return (
     <TextField
       id={'email'}

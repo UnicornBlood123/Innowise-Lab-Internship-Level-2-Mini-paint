@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { Types } from '../../../store/types';
+import { ToolsProps } from './Tools.interfaces';
 
 const Tools = ({
   onBrushClick,
@@ -13,7 +14,7 @@ const Tools = ({
   onSaveImageClick,
   onLoadImageClick,
   onClearCanvasClick,
-}: any) => {
+}: ToolsProps) => {
   return (
     <>
       <Button

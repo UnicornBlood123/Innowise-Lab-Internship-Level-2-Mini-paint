@@ -44,8 +44,8 @@ const ToolsContainer = () => {
     tools.selectTool.fillColor = color;
   };
 
-  const changeLineWidthClick = (width: number) => {
-    tools.selectTool.lineWidth = width;
+  const changeLineWidthClick = (width: string) => {
+    tools.selectTool.lineWidth = +width;
   };
 
   const saveImageClick = (type: string) => {

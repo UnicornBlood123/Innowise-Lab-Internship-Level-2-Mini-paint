@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import './Canvas.css';
+import { CanvasProps } from './Canvas.interfaces';
 
-const Canvas = ({ setRef }: { setRef(ref: any): void }) => {
+const Canvas = ({ setRef }: CanvasProps) => {
   const canvasRef = useRef<any>();
   useEffect(() => {
     setRef(canvasRef.current);

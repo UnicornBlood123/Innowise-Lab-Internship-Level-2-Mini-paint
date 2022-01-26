@@ -1,8 +1,15 @@
 import React from 'react';
 import { CircularProgress, Stack } from '@mui/material';
 import ChatPost from '../ChatPost/ChatPost';
+import { ChatPostsProps } from './ChatPosts.interfaces';
 
-const ChatPosts = ({ loadingImages, loadingUsers, images = [], user = [], change }: any) => {
+const ChatPosts = ({
+  loadingImages,
+  loadingUsers,
+  images = [],
+  user = [{}],
+  change,
+}: ChatPostsProps) => {
   return loadingImages && loadingUsers ? (
     <CircularProgress sx={{ alignSelf: 'center' }} />
   ) : (
