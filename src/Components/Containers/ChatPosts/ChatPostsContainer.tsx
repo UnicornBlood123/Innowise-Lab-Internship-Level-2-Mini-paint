@@ -17,9 +17,7 @@ const ChatPostsContainer = () => {
   );
   const [usersData, setUsersData] = useCollectionData(firestore.collection('users'));
   const [user, setUser] = useAuthState(auth);
-
   const images = useSelector((state: any) => state.chat.images);
-  const users = useSelector((state: any) => state.chat.users);
 
   const loadImagesFromFirestore = () => {
     return new Promise((resolve) => {
@@ -34,7 +32,7 @@ const ChatPostsContainer = () => {
   };
 
   const getUser = () => {
-    if (usersData && user) {
+    if (usersData && !setUser) {
       return usersData.filter((us: any) => {
         if (us?.name === user?.email) return us;
       });
@@ -44,7 +42,7 @@ const ChatPostsContainer = () => {
   const setCheck = (check: boolean, id: number) => {
     !setImagesData &&
       !setUsersData &&
-      user &&
+      !setUser &&
       firestore
         .collection('users')
         .doc(user?.email)
@@ -91,7 +89,7 @@ const ChatPostsContainer = () => {
       <ChatFilter emailFilter={filterPosts} />
       <ChatPosts
         loadingImages={setImagesData}
-        loadingUsers={setImagesData}
+        loadingUsers={setUsersData}
         images={images}
         user={getUser()}
         change={setCheck}

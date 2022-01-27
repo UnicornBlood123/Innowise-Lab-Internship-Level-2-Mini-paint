@@ -23,16 +23,12 @@ const SaveLoadImage = ({ modalOpen, setModalOpen, save, load, type }: SaveLoadIm
   };
 
   const click = () => {
-    type === 'save' ? saveButtonClick() : loadButtonClick();
+    type === 'Save' ? saveButtonClick() : loadButtonClick();
   };
 
   return (
     <Dialog open={modalOpen} aria-labelledby={'form-dialog-title'}>
-      {type === 'save' ? (
-        <DialogTitle id={'form-dialog-title'}>Save</DialogTitle>
-      ) : (
-        <DialogTitle id={'form-dialog-title'}>Load</DialogTitle>
-      )}
+      <DialogTitle id={'form-dialog-title'}>{type}</DialogTitle>
       <DialogContent>
         <TextField
           autoFocus

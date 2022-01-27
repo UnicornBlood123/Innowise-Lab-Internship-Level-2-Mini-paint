@@ -64,10 +64,10 @@ const Tools = ({
       <Button color="secondary" variant="outlined" onClick={onClearCanvasClick}>
         Clear
       </Button>
-      <Button color="secondary" variant="outlined" onClick={() => onSaveImageClick('save')}>
+      <Button color="secondary" variant="outlined" onClick={() => onSaveImageClick('Save')}>
         Save
       </Button>
-      <Button color="secondary" variant="outlined" onClick={() => onLoadImageClick('load')}>
+      <Button color="secondary" variant="outlined" onClick={() => onLoadImageClick('Load')}>
         Load
       </Button>
     </>
