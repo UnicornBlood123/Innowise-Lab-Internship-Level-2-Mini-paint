@@ -1,0 +1,35 @@
+import React from 'react';
+import { CircularProgress, Stack } from '@mui/material';
+import ChatPost from '../ChatPost/ChatPost';
+import { ChatPostsProps } from './ChatPosts.interfaces';
+
+const ChatPosts = ({ isFetching, images = [], user = [{}], change }: ChatPostsProps) => {
+  return isFetching ? (
+    <CircularProgress sx={{ alignSelf: 'center' }} />
+  ) : (
+    <Stack
+      sx={{
+        width: '100%',
+        height: '100%',
+        gap: '10px',
+        overflowX: 'auto',
+      }}
+    >
+      {images.map((image: any) => {
+        return (
+          <ChatPost
+            key={Number(image?.id)}
+            id={Number(image?.id)}
+            email={image.email}
+            name={image.name}
+            img={image.data}
+            change={change}
+            checked={user?.[0]?.[+image?.id]}
+          />
+        );
+      })}
+    </Stack>
+  );
+};
+
+export default ChatPosts;

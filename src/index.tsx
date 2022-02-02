@@ -1,14 +1,14 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Components/Viers/App/App';
+import App from './views/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { rootReducer } from './store/redusers';
+import { rootReducer } from './store/rootReducer';
 import thunk from 'redux-thunk';
 
 firebase.initializeApp({
