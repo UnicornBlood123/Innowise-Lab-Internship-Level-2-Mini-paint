@@ -23,6 +23,13 @@ const ToolsContainer = () => {
   const [user, setUser] = useAuthState(auth);
   const [type, setType] = useState('');
 
+  const activeButtonsConfig = [
+    { type: 'BRASH' },
+    { type: 'RECT' },
+    { type: 'LINE' },
+    { type: 'CIRCLE' },
+  ];
+
   const onToolClick = (buttonType: string, e: ChangeEvent<HTMLInputElement>) => {
     switch (buttonType) {
       case 'BRASH':
@@ -38,11 +45,11 @@ const ToolsContainer = () => {
         dispatch(selectCircle(new Circle(canvas.canvasRef)));
         break;
       case 'SAVE':
-        setType(type);
+        setType('Save');
         setModalOpen(true);
         break;
       case 'LOAD':
-        setType(type);
+        setType('Load');
         setModalOpen(true);
         break;
       case 'CLEAR':
@@ -61,17 +68,15 @@ const ToolsContainer = () => {
   };
 
   const saveImageToFirebase = (name: string) => {
-    if (!setUser) {
-      firestore
-        .collection('images')
-        .doc(user?.email + '_' + name)
-        .set({
-          id: (images.length + 1).toString(),
-          data: canvas.canvasRef.toDataURL(),
-          name: name,
-          email: user?.email,
-        });
-    }
+    firestore
+      .collection('images')
+      .doc(user?.email + '_' + name)
+      .set({
+        id: (images.length + 1).toString(),
+        data: canvas.canvasRef.toDataURL(),
+        name: name,
+        email: user?.email,
+      });
   };
 
   const loadImageToCanvas = (name: string) => {
@@ -98,7 +103,11 @@ const ToolsContainer = () => {
           gap: '10px',
         }}
       >
-        <Tools onToolClick={onToolClick} toolActive={tools.toolName} />
+        <Tools
+          onToolClick={onToolClick}
+          toolActive={tools.toolName}
+          activeButtonsConfig={activeButtonsConfig}
+        />
       </Box>
       <SaveLoadImage
         modalOpen={modalOpen}

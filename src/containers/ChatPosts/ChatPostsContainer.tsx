@@ -20,18 +20,6 @@ const ChatPostsContainer = () => {
   const [user, setUser] = useAuthState(auth);
   const images = useSelector((state: any) => state.chat.images);
 
-  const loadImagesFromFirestore = () => {
-    return new Promise((resolve) => {
-      resolve(imagesData);
-    });
-  };
-
-  const loadUsersFromFirestore = () => {
-    return new Promise((resolve) => {
-      resolve(usersData);
-    });
-  };
-
   const getUser = () => {
     if (usersData && !setUser) {
       return usersData.filter((us: any) => {
@@ -69,13 +57,13 @@ const ChatPostsContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(loadUsers(loadUsersFromFirestore));
+    dispatch(loadUsers(usersData));
     !setUsersData && !setImagesData && setIsFetching(false);
     setUsersData && setImagesData && setIsFetching(true);
   }, [usersData]);
 
   useEffect(() => {
-    dispatch(loadImages(loadImagesFromFirestore));
+    dispatch(loadImages(imagesData));
     !setUsersData && !setImagesData && setIsFetching(false);
     setUsersData && setImagesData && setIsFetching(true);
   }, [imagesData]);

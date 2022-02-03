@@ -1,39 +1,21 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import { Types } from '../../store/types';
 import { ToolsProps } from './Tools.interfaces';
 
-const Tools = ({ onToolClick, toolActive }: ToolsProps) => {
+const Tools = ({ onToolClick, toolActive, activeButtonsConfig }: ToolsProps) => {
   return (
     <>
-      <Button
-        color="secondary"
-        variant={toolActive === Types.BRASH ? 'contained' : 'outlined'}
-        onClick={onToolClick.bind(null, Types.BRASH)}
-      >
-        Brash
-      </Button>
-      <Button
-        color="secondary"
-        variant={toolActive === Types.LINE ? 'contained' : 'outlined'}
-        onClick={onToolClick.bind(null, Types.LINE)}
-      >
-        Line
-      </Button>
-      <Button
-        color="secondary"
-        variant={toolActive === Types.RECT ? 'contained' : 'outlined'}
-        onClick={onToolClick.bind(null, Types.RECT)}
-      >
-        Rect
-      </Button>
-      <Button
-        color="secondary"
-        variant={toolActive === Types.CIRCLE ? 'contained' : 'outlined'}
-        onClick={onToolClick.bind(null, Types.CIRCLE)}
-      >
-        Circle
-      </Button>
+      {activeButtonsConfig.map((tool: any, i: number) => (
+        <Button
+          key={i}
+          color="secondary"
+          variant={toolActive === tool.type ? 'contained' : 'outlined'}
+          onClick={onToolClick.bind(null, tool.type)}
+        >
+          {tool.type}
+        </Button>
+      ))}
+
       <Button color="secondary" variant="outlined" onClick={onToolClick.bind(null, 'CLEAR')}>
         Clear
       </Button>

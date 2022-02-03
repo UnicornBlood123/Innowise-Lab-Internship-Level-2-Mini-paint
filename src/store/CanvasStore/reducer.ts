@@ -1,6 +1,8 @@
 import { Types } from '../types';
 
-export const reducer = (state = {}, action: any) => {
+const defaultState = {};
+
+export const reducer = (state = defaultState, action: any) => {
   switch (action.type) {
     case Types.CANVAS:
       return {

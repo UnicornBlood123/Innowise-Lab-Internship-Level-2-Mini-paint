@@ -26,6 +26,7 @@ export const Context = createContext(null);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
 store.subscribe(() => console.log(store.getState()));
 
 ReactDOM.render(
