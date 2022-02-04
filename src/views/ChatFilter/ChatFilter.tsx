@@ -2,9 +2,9 @@ import React from 'react';
 import { TextField } from '@mui/material';
 import { ChatFilterProps } from './ChatFilter.interfaces';
 
-const ChatFilter = ({ emailFilter }: ChatFilterProps) => {
+const ChatFilter = ({ filter, setFilter }: ChatFilterProps) => {
   const changeFilter = (e: any) => {
-    emailFilter(e.target.value);
+    setFilter(e.target.value);
   };
 
   return (
@@ -14,6 +14,7 @@ const ChatFilter = ({ emailFilter }: ChatFilterProps) => {
       type={'email'}
       size={'small'}
       sx={{ justifyContent: 'center' }}
+      value={filter}
       onChange={changeFilter}
     />
   );

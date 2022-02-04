@@ -3,8 +3,8 @@ import { CircularProgress, Stack } from '@mui/material';
 import ChatPost from '../ChatPost/ChatPost';
 import { ChatPostsProps } from './ChatPosts.interfaces';
 
-const ChatPosts = ({ isFetching, images = [], user = [{}], change }: ChatPostsProps) => {
-  return isFetching ? (
+const ChatPosts = ({ isLoad, images = [], user = [{}], change }: ChatPostsProps) => {
+  return isLoad ? (
     <CircularProgress sx={{ alignSelf: 'center' }} />
   ) : (
     <Stack

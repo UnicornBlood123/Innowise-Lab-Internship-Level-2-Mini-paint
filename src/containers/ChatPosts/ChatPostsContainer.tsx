@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../../views/Canvas/Canvas.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { emailFilter, loadImages, loadUsers } from '../../store/ChatStore/actions';
+import { emailFilter } from '../../store/ChatStore/actions';
 import ChatPosts from '../../views/ChatPosts/ChatPosts';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ChatFilter from '../../views/ChatFilter/ChatFilter';
@@ -12,61 +11,48 @@ import { Stack } from '@mui/material';
 const ChatPostsContainer = () => {
   const dispatch = useDispatch();
   const { auth, firestore } = useContext<any>(Context);
-  const [imagesData, setImagesData] = useCollectionData(
-    firestore.collection('images').orderBy('id', 'asc')
-  );
-  const [usersData, setUsersData] = useCollectionData(firestore.collection('users'));
-  const [isFetching, setIsFetching] = useState(true);
   const [user, setUser] = useAuthState(auth);
-  const images = useSelector((state: any) => state.chat.images);
+  const allImages = useSelector((state: any) => state.chat.images);
+  const filterImages = useSelector((state: any) => state.chat.filterImages);
+  const allUsers = useSelector((state: any) => state.chat.users);
+  const isLoad = useSelector((state: any) => state.chat.isLoad);
+  const [filter, setFilter] = useState('');
 
   const getUser = () => {
-    if (usersData && !setUser) {
-      return usersData.filter((us: any) => {
-        if (us?.name === user?.email) return us;
+    if (allUsers && user) {
+      return allUsers.filter((u: any) => {
+        if (u?.name === user?.email) return u;
       });
     }
   };
 
   const setCheck = (check: boolean, id: number) => {
-    !setImagesData &&
-      !setUsersData &&
-      !setUser &&
-      firestore
-        .collection('users')
-        .doc(user?.email)
-        .update({ [id]: check })
-        .catch(() => {
-          firestore.collection('users').doc(user?.email).set({ name: user?.email });
-          firestore
-            .collection('users')
-            .doc(user?.email)
-            ?.update({ [id]: check });
-        });
+    firestore
+      .collection('users')
+      .doc(user?.email)
+      .update({ [id]: check })
+      .catch(() => {
+        firestore.collection('users').doc(user?.email).set({ name: user?.email });
+        firestore
+          .collection('users')
+          .doc(user?.email)
+          ?.update({ [id]: check });
+      });
   };
 
-  const filterPosts = (email = '') => {
-    email.length > 0
-      ? dispatch(
-          emailFilter(
-            imagesData?.filter((image: any) => image.email === email),
-            getUser()
-          )
-        )
-      : dispatch(emailFilter(imagesData, getUser()));
+  const filterPosts = () => {
+    filter.length > 0
+      ? dispatch(emailFilter(allImages?.filter((image: any) => image.email === filter)))
+      : dispatch(emailFilter(allImages));
   };
 
   useEffect(() => {
-    dispatch(loadUsers(usersData));
-    !setUsersData && !setImagesData && setIsFetching(false);
-    setUsersData && setImagesData && setIsFetching(true);
-  }, [usersData]);
+    !isLoad && filterPosts();
+  }, [isLoad]);
 
   useEffect(() => {
-    dispatch(loadImages(imagesData));
-    !setUsersData && !setImagesData && setIsFetching(false);
-    setUsersData && setImagesData && setIsFetching(true);
-  }, [imagesData]);
+    filterPosts();
+  }, [filter]);
 
   return (
     <Stack
@@ -79,8 +65,8 @@ const ChatPostsContainer = () => {
         gap: '10px',
       }}
     >
-      <ChatFilter emailFilter={filterPosts} />
-      <ChatPosts isFetching={isFetching} images={images} user={getUser()} change={setCheck} />
+      <ChatFilter filter={filter} setFilter={setFilter} />
+      <ChatPosts isLoad={isLoad} images={filterImages} user={getUser()} change={setCheck} />
     </Stack>
   );
 };

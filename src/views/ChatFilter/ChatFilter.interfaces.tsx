@@ -1,3 +1,4 @@
 export interface ChatFilterProps {
-  emailFilter: (email: string) => void;
+  filter: string;
+  setFilter: (email: string) => void;
 }

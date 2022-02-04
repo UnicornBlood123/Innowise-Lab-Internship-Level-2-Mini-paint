@@ -1,22 +1,33 @@
 import { Types } from '../types';
 
-export const reducer = (state = {}, action: any) => {
+export const reducer = (state = { isLoad: true, filterImages: [] }, action: any) => {
   switch (action.type) {
-    case Types.LOADIMAGES:
+    case Types.SETIMAGES:
       return {
         ...state,
         images: action.images,
+        isLoad: action.isLoad,
+      };
+    case Types.SETUSERS:
+      return {
+        ...state,
+        users: action.users,
+        isLoad: action.isLoad,
+      };
+    case Types.LOADIMAGES:
+      return {
+        ...state,
+        isLoad: action.isLoad,
       };
     case Types.LOADUSERS:
       return {
         ...state,
-        users: action.users,
+        isLoad: action.isLoad,
       };
     case Types.EMAILFILTER:
       return {
         ...state,
-        images: action.images,
-        users: action.users,
+        filterImages: action.images,
       };
     default:
       return state;

@@ -7,11 +7,13 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { rootReducer } from './store/rootReducer';
-import thunk from 'redux-thunk';
+import ReduxSagaFirebase from 'redux-saga-firebase';
+import createSagaMiddleware from 'redux-saga';
+import { rootWatcher } from './saga';
 
-firebase.initializeApp({
+const myFirebaseApp = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
@@ -21,11 +23,15 @@ firebase.initializeApp({
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
+export const reduxSagaFirebase = new ReduxSagaFirebase(myFirebaseApp);
+const sagaMiddleware = createSagaMiddleware();
+
 export const Context = createContext(null);
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootWatcher);
 
 store.subscribe(() => console.log(store.getState()));
 
