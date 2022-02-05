@@ -11,7 +11,6 @@ import SaveLoadImage from '../../views/SaveLoadImage/SaveLoadImage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '../../index';
 import AlertDialog from '../../views/AlertDialog/AlertDialog';
-import { loadImages, loadUsers } from '../../store/ChatStore/actions';
 
 const ToolsContainer = () => {
   const dispatch = useDispatch();

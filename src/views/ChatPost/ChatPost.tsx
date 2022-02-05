@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Checkbox, Box, Stack } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
