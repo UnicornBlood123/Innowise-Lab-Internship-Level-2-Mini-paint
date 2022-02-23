@@ -48,7 +48,7 @@ Module component file manages routing for the particular module.
 Each component folder should contain all the code related to the particular piece of the application. It contains component file itself, styles, interfaces (if needed).
 The purpose of doing it that way is to keep all of the imports in other files nice and beautiful.
 
-Let's imagine we have a component called `OfficeView`. The correct folder structure is the next:
+Let's imagine we have a component called `CanvasView`. The correct folder structure is the next:
 
 ```bash
 
