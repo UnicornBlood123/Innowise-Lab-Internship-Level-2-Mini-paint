@@ -2,6 +2,7 @@ import React from 'react';
 import { CircularProgress, Stack } from '@mui/material';
 import ChatPost from '../ChatPost/ChatPost';
 import { ChatPostsProps } from './ChatPosts.interfaces';
+import { imageInterface } from '../../store/ChatStore/interfaces';
 
 const ChatPosts = ({ isLoad, images = [], user = [{}], change }: ChatPostsProps) => {
   return isLoad ? (
@@ -15,7 +16,7 @@ const ChatPosts = ({ isLoad, images = [], user = [{}], change }: ChatPostsProps)
         overflowX: 'auto',
       }}
     >
-      {images.map((image: any) => {
+      {images.map((image: imageInterface) => {
         return (
           <ChatPost
             key={Number(image?.id)}

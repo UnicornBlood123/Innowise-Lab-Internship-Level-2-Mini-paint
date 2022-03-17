@@ -4,7 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Login from '../Login/Login';
-import { Paths } from '../../constants/routes';
+import { Paths } from './App.routes';
 import Registration from '../Registration/Registration';
 import Content from '../Content/Content';
 import { Box, CircularProgress, Stack } from '@mui/material';

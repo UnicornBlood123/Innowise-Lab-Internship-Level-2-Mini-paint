@@ -11,16 +11,18 @@ import SaveLoadImage from '../../views/SaveLoadImage/SaveLoadImage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '../../index';
 import AlertDialog from '../../views/AlertDialog/AlertDialog';
+import { stateInterface } from '../../store/rootInterface';
+import { imageInterface } from '../../store/ChatStore/interfaces';
 
 const ToolsContainer = () => {
   const dispatch = useDispatch();
-  const canvas = useSelector((state: any) => state.canvas);
-  const images = useSelector((state: any) => state.chat.images);
-  const tools = useSelector((state: any) => state.tools);
+  const canvas = useSelector((state: stateInterface) => state.canvas);
+  const images = useSelector((state: stateInterface) => state.chat.images);
+  const tools = useSelector((state: stateInterface) => state.tools);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [alertOpen, setAlertOpen] = useState<boolean>(false);
   const { auth, firestore } = useContext<any>(Context);
-  const [user, setUser] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const [type, setType] = useState('');
 
   const activeButtonsConfig = [
@@ -81,8 +83,8 @@ const ToolsContainer = () => {
 
   const loadImageToCanvas = (name: string) => {
     tools.selectTool.dataCanvas =
-      images.find((image: any) => image.name === name)?.data ?? setAlertOpen(true);
-    images.find((image: any) => image.name === name)?.data === undefined
+      images.find((image: imageInterface) => image.name === name)?.data ?? setAlertOpen(true);
+    images.find((image: imageInterface) => image.name === name)?.data === undefined
       ? setModalOpen(true)
       : setModalOpen(false);
   };

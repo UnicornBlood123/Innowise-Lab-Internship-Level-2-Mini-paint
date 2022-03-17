@@ -5,7 +5,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { ChatPostProps } from './ChatPost.interfaces';
 
 const ChatPost = ({ email, name, img, change, checked = false, id }: ChatPostProps) => {
-  const onCheckBoxClick = (event: any) => {
+  const onCheckBoxClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     change(event.target.checked, Number(event.target.id));
   };
 

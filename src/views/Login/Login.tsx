@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../../index';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Paths } from '../../constants/routes';
+import { Paths } from '../App/App.routes';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   Button,

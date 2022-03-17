@@ -11,7 +11,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { rootReducer } from './store/rootReducer';
 import ReduxSagaFirebase from 'redux-saga-firebase';
 import createSagaMiddleware from 'redux-saga';
-import { rootWatcher } from './saga';
+import { rootWatcher } from './store/rootSaga';
 
 const myFirebaseApp = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

@@ -9,7 +9,7 @@ export default class Tool {
     this.ctx = this.canvas?.getContext('2d');
     this.destroyEvents();
   }
-  set dataCanvas(dataImage: string) {
+  set dataCanvas(dataImage: string | void) {
     if (dataImage) {
       const img = new Image();
       img.src = dataImage;

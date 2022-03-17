@@ -1,6 +1,7 @@
 import { Types } from '../types';
+import { imageInterface } from './interfaces';
 
-export const emailFilter = (images: {}[]) => ({
+export const emailFilter = (images: imageInterface[]) => ({
   type: Types.EMAILFILTER,
   images: images,
 });
@@ -9,4 +10,3 @@ export const setImages = (data: {}[]) => ({ type: Types.SETIMAGES, images: data,
 export const setUsers = (data: {}[]) => ({ type: Types.SETUSERS, users: data, isLoad: false });
 
 export const loadImages = () => ({ type: Types.LOADIMAGES, isLoad: true });
-export const loadUsers = () => ({ type: Types.LOADUSERS, isLoad: true });

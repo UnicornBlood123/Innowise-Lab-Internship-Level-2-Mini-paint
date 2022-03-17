@@ -7,8 +7,8 @@ import Brash from '../Tools/Brash';
 import { setCanvas } from '../../store/CanvasStore/actions';
 
 const CanvasContainer = () => {
-  let canvasRef: HTMLElement;
-  const setRef = (ref: HTMLElement): void => {
+  let canvasRef: HTMLCanvasElement | null;
+  const setRef = (ref: HTMLCanvasElement | null): void => {
     canvasRef = ref;
   };
 

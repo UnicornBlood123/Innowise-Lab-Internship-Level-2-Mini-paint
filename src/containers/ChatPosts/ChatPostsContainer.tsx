@@ -7,20 +7,22 @@ import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ChatFilter from '../../views/ChatFilter/ChatFilter';
 import { Stack } from '@mui/material';
+import { stateInterface } from '../../store/rootInterface';
+import { imageInterface, userInterface } from '../../store/ChatStore/interfaces';
 
 const ChatPostsContainer = () => {
   const dispatch = useDispatch();
   const { auth, firestore } = useContext<any>(Context);
-  const [user, setUser] = useAuthState(auth);
-  const allImages = useSelector((state: any) => state.chat.images);
-  const filterImages = useSelector((state: any) => state.chat.filterImages);
-  const allUsers = useSelector((state: any) => state.chat.users);
-  const isLoad = useSelector((state: any) => state.chat.isLoad);
+  const [user] = useAuthState(auth);
+  const allImages = useSelector((state: stateInterface) => state.chat.images);
+  const filterImages = useSelector((state: stateInterface) => state.chat.filterImages);
+  const allUsers = useSelector((state: stateInterface) => state.chat.users);
+  const isLoad = useSelector((state: stateInterface) => state.chat.isLoad);
   const [filter, setFilter] = useState('');
 
   const getUser = () => {
     if (allUsers && user) {
-      return allUsers.filter((u: any) => {
+      return allUsers.filter((u: userInterface) => {
         if (u?.name === user?.email) return u;
       });
     }
@@ -42,7 +44,7 @@ const ChatPostsContainer = () => {
 
   const filterPosts = () => {
     filter.length > 0
-      ? dispatch(emailFilter(allImages?.filter((image: any) => image.email === filter)))
+      ? dispatch(emailFilter(allImages?.filter((image: imageInterface) => image.email === filter)))
       : dispatch(emailFilter(allImages));
   };
 

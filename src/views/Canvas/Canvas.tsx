@@ -3,7 +3,7 @@ import './Canvas.css';
 import { CanvasProps } from './Canvas.interfaces';
 
 const Canvas = ({ setRef }: CanvasProps) => {
-  const canvasRef = useRef<any>();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     setRef(canvasRef.current);
   });

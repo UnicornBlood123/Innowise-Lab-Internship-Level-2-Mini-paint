@@ -2,7 +2,7 @@
 
 ## Namings
 
-All the files and folders in `src` folder of the application should be postfixed with the meaning of the file. The only one exception is `index.ts` files.
+All the files and folders in `src` folder of the application should be postfixed with the meaning of the file. The only one exception is `ndex.ts` files.
 
 List of available postfixes:
 
@@ -26,7 +26,7 @@ src
 |   |   +---views
 |   |   \---*
 |   |           index.css
-|   |           index.ts
+|   |           ndex.ts
 
 
 ## Folders definition
@@ -41,7 +41,7 @@ Each module contains it's own components, containers and routing.
 `containers` folder contains `container` components. The components are connected to state management. They pass all the values down.
 
 Module component file manages routing for the particular module.
-`index.ts` file exports the entire component of the module.
+`ndex.ts` file exports the entire component of the module.
 
 ### Component folder
 
@@ -62,7 +62,7 @@ Let's imagine we have a component called `CanvasView`. The correct folder struct
 
 ### Service folder
 
-Each service folder contains `index.ts` file that exports all the functionality defined in the service.
+Each service folder contains `ndex.ts` file that exports all the functionality defined in the service.
 
 Folder structure:
 ```bash
@@ -71,7 +71,7 @@ Folder structure:
 |   +---ModalsFacade
 |       ModalsFacade.service.ts
 |       ModalsFacade.interfaces.ts
-|       index.ts
+|       ndex.ts
 
 ```
 

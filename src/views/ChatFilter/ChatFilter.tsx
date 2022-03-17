@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import { ChatFilterProps } from './ChatFilter.interfaces';
 
 const ChatFilter = ({ filter, setFilter }: ChatFilterProps) => {
-  const changeFilter = (e: any) => {
+  const changeFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
   };
 

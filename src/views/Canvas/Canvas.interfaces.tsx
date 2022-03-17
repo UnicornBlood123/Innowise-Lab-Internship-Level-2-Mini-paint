@@ -1,3 +1,3 @@
 export interface CanvasProps {
-  setRef: (ref: any) => void;
+  setRef: (ref: HTMLCanvasElement | null) => void;
 }

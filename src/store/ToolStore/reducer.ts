@@ -2,7 +2,10 @@ import { Types } from '../types';
 
 const defaultState = {};
 
-export const reducer = (state = defaultState, action: any) => {
+export const reducer = (
+  state = defaultState,
+  action: { type: string; tool: {}; toolName: string }
+) => {
   switch (action.type) {
     case Types.BRASH:
       return {

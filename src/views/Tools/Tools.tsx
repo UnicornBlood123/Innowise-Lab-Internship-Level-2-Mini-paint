@@ -5,7 +5,7 @@ import { ToolsProps } from './Tools.interfaces';
 const Tools = ({ onToolClick, toolActive, activeButtonsConfig }: ToolsProps) => {
   return (
     <>
-      {activeButtonsConfig.map((tool: any, i: number) => (
+      {activeButtonsConfig.map((tool: { type: string }, i: number) => (
         <Button
           key={i}
           color="secondary"
